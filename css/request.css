@@ -1,0 +1,47 @@
+.tutors .main {
+    display: flex;
+    padding: 20px;
+    background-color: var(--color2);
+    flex-grow: 1;
+    border-radius: 10px;
+    flex-direction: column;
+    z-index: 0;
+
+    max-height: calc(100vh - 6 * var(--margin));
+    overflow-y: auto;
+
+}
+
+.individual-user-request{
+    background-color: var(--color1);
+    display: flex;
+    flex-direction: row;
+
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 5px 20px;
+    margin: 15px 10px; 
+
+    border-radius: 10px;
+    
+}
+
+.request-info{
+    color: var(--color2);
+}
+
+.request-button{
+    color: var(--color1);
+    background-color: var(--color2);
+
+    height: 30px;
+    border: none;
+    border-radius: 10px;
+}
+
+.request-button:hover {
+    background-color: var(--color1);
+    color: var(--color2);
+    border: 2px solid var(--color2);
+}

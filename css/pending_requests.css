@@ -1,0 +1,62 @@
+.tutors .sub .chats {
+    background-color: var(--color2);
+    width: calc(100% - var(--margin));
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    border-radius: inherit;
+    overflow: auto;
+    margin-left: var(--margin);
+    margin-bottom: calc(var(--margin)/2);
+
+    z-index: 0;
+
+}
+
+.individual-user-pending{
+    background-color: var(--color1);
+    display: flex;
+    flex-direction: row;
+
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 2px 20px;
+    margin: 10px 10px;
+
+    border: none;
+    border-radius: 30px;
+    
+}
+
+.individual-user-pending button {
+    font-size: 1.3rem;
+    background-color: transparent;
+    color: var(--color2);
+    border: 2px solid var(--color2);
+    transition: all 70ms ease;  
+}
+
+.individual-user-pending button:hover {
+    background-color: var(--color2);
+    color: var(--color1);
+    border: 2px solid var(--color1);
+}
+
+.accept-pending{
+    border-radius: 10px 0px 0px 10px;
+}
+
+.cancel-pending {
+    border-radius: 0px 10px 10px 0px;
+}
+
+.load-pending {
+    border-radius: 10px;
+}
+
+
+
+.pending-info{
+    color: var(--color2);
+}

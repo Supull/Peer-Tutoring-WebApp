@@ -1,0 +1,141 @@
+:root {
+    --margin: 10px;
+    --color1: #000000;
+    --color2: #212121;
+    --color3: #5A65CA;
+}
+
+body {
+    margin: 0;
+}
+
+#blur {
+    width: 100vw; 
+    height: 100vh;
+    background-color: #000000;
+    z-index: 1;
+    pointer-events: none;
+    background-color: transparent;
+    position: absolute;
+}
+
+.app {
+    background-color: var(--color1);
+    display: flex;
+    flex-direction: row;
+    padding: var(--margin);
+}
+
+.navigation-bar {
+    width: 70px;
+    height: calc(100vh - 2*var(--margin));
+    display: flex;
+    flex-direction: column;
+    border-radius: 0px 30px 30px 0px;
+    margin-right: var(--margin);
+    align-items: center;
+}
+
+.navigation-bar button {
+    background-color: #EE4E4E;
+    z-index: 1;
+    width: 40px;
+    height: 40px;
+    margin: 10px;
+    border: none;
+    border-radius: 10px;
+}
+
+.left-side {
+    background-color: var(--color2);
+    width: 70%;
+    color: var(--color2);
+    height: calc(100vh - 2*var(--margin));
+    display: inline-block;
+    border-radius: 30px;
+    margin-right: var(--margin);
+    z-index: 0;
+    padding: 20px;
+}
+
+.right-side {
+    background-color: var(--color2);
+    color: white;
+    width: 30%;
+    height: calc(100vh - 2*var(--margin));
+    display: inline-block;
+    border-radius: 30px;
+    margin-right: var(--margin);
+    z-index: 0;
+    padding: 20px;
+}
+
+.right-side .dropdown {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.right-side label, 
+.right-side select, 
+.right-side input {
+    margin-bottom: 10px;
+}
+
+.right-side select {
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid var(--color3);
+}
+
+.right-side input[type="submit"] {
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: none;
+    background-color: var(--color3);
+    color: white;
+    cursor: pointer;
+}
+
+.right-side .message {
+    margin-top: 10px;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.error {
+    color: red;
+}
+
+.left-side .individual-tutor {
+    background-color: black; /* Updated to black for better contrast */
+    color: white; /* Text color set to white */
+    backdrop-filter: blur(100px);
+    margin: 0px 0px 20px 0px;
+    display: flex;
+    flex-direction: row;
+    padding: 10px 10px;
+    align-items: center;
+    border-radius: 30px;
+}
+
+.left-side .individual-tutor .name {
+    display: flex;
+    flex-direction: row;
+    width: 70%;
+    font-size: 1.2rem;
+    margin: 0px 0px 0px 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+}
+
+.left-side .individual-tutor button {
+    margin: 0px 0px 0px auto;
+    font-weight: bold;
+    font-family: monospace;
+    padding: 5px;
+    background-color: white; /* Button background color */
+    border: none;
+    color: black; /* Button text color */
+    border-radius: 10px;
+}

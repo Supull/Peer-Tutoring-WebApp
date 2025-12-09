@@ -1,0 +1,271 @@
+:root {
+    --margin: 10px;
+    --color1: #000000;
+    --color2: #212121;
+    --color3: #5A65CA;
+}
+
+body {
+    margin: 0px;
+}
+
+#blur {
+    width: 100vw; 
+    height: 100vh;
+    background-color: #000000;
+    z-index: 1;
+    pointer-events: none;
+    background-color: transparent;
+    position: absolute;
+}
+
+.app {
+    background-color: var(--color1);
+    display: flex;
+    flex-direction: row;
+    padding: var(--margin);
+}
+
+/* Navigation Bar Styles */
+
+.navigation-bar {
+    width: 70px;
+    height: calc(100vh - 2*var(--margin));
+    display: flex;
+    flex-direction: column;
+    border-radius: 0px 30px 30px 0px;
+    margin-right: var(--margin);
+    align-items: center;
+}
+
+.navigation-bar button {
+    background-color: #EE4E4E;
+    z-index: 1;
+    width: 40px;
+    height: 40px;
+    margin: 10px;
+    border: none;
+    border-radius: 10px;
+}
+
+/* Profile Area Styles */
+
+.profile {
+    background-color: var(--color2);
+    width: 300px;
+    color: var(--color2);
+    height: calc(100vh - 2*var(--margin));
+    display: inline-block;
+    border-radius: 30px;
+    margin-right: var(--margin);
+    z-index: 0;
+    padding: 20px;
+}
+
+.profile form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.profile label, 
+.profile select, 
+.profile button {
+    margin-bottom: 10px;
+}
+
+.profile select {
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid var(--color3);
+}
+
+.profile button {
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: none;
+    background-color: var(--color3);
+    color: white;
+    cursor: pointer;
+}
+
+.profile #responseMessage {
+    margin-top: 10px;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Tutor Area Styles */
+
+.tutors {
+    display: flex;
+    flex-grow: 1;  
+    flex-direction: row;
+    border-radius: 10px;
+}
+
+.tutors .main {
+    display: flex;
+    padding: 20px;
+    background-color: var(--color2);
+    flex-grow: 1;
+    border-radius: 10px;
+    flex-direction: column;
+    z-index: 0;
+}
+
+.tutors .sub {
+    height: calc(100vh - calc(2*var(--margin)));
+    width: 350px;
+    border-radius: inherit;
+    display: flex;
+    flex-direction: column;
+}
+
+.tutors .sub .chats {
+    background-color: var(--color2);
+    width: calc(100% - var(--margin));
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    border-radius: inherit;
+    overflow: auto;
+    margin-left: var(--margin);
+    margin-bottom: calc(var(--margin)/2);
+    z-index: 0;
+}
+
+.tutors .sub .info {
+    background-color: var(--color2);
+    color: white;
+    width: calc(100% - var(--margin));
+    height: 50%;
+    display: flex;
+    border-radius: inherit;
+    justify-content: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.4em;
+    margin-left: var(--margin);
+    margin-top: calc(var(--margin)/2);
+    z-index: 0;
+}
+
+.tutors .sub .info p {
+    margin: 20px;
+}
+
+.tutors .main .individual-tutor {
+    background-color: white;
+    backdrop-filter: blur(100px);
+    color: black;
+    margin: 0px 0px 20px 0px;
+    display: flex;
+    flex-direction: row;
+    padding: 10px 10px;
+    align-items: center;
+    border-radius: 30px;
+}
+
+.tutors .main .individual-tutor .name {
+    display: flex;
+    flex-direction: row;
+    width: 70%;
+    font-size: 1.2rem;
+    margin: 0px 0px 0px 20px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.tutors .main .individual-tutor button {
+    margin: 0px 0px 0px auto;
+    font-weight: bold;
+    font-family: monospace;
+    padding: 5px;
+    background-color: black;
+    border: none;
+    color: white;
+    border-radius: 10px;
+}
+
+.tutors .sub .chats .individual-tutor {
+    background-color: white;
+    margin: 2px 4px;
+    display: flex;
+    flex-direction: row;
+    padding: 10px 10px;
+    align-items: center;
+    border-radius: 30px;
+}
+
+.tutors .sub .chats .individual-tutor .name {
+    display: flex;
+    flex-direction: row;
+    width: 70%;
+    font-size: 1.2rem;
+    margin: 0px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.tutors .sub .chats .individual-tutor button {
+    margin: 0px 0px 0px auto;
+    font-weight: bold;
+    font-family: monospace;
+    padding: 5px;
+    background-color: white;
+    color: black;
+    border-radius: 10px;
+}
+
+
+.filter-options {
+    margin-top: 20px; 
+}
+.filter-options button {
+    margin-left: 10px; 
+}
+.error {
+    color: red;
+}
+.white-box {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 15px;
+    margin: 10px 0;
+    
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.request-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.request-info {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #000;
+}
+.accept-button, .chat-button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.accept-button:disabled, .chat-button:disabled {
+    background-color: #ccc;
+}
+.pending {
+    background-color: #ff9800;
+}
+.chat-button {
+    background-color: #2196F3;
+}
+
+
+           
+
+
+            

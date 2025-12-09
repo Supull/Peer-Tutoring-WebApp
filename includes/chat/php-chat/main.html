@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            height: 100vh;
+        }
+
+        #sessions {
+            width: 250px;
+            background-color: #f4f4f4; /* Light background for sidebar */
+            border-right: 1px solid #ddd; /* Subtle border for separation */
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+        }
+
+        #sessions button {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: none;
+            border-radius: 5px;
+            background-color: #ffffff; /* White background for buttons */
+            color: #333; /* Dark text for contrast */
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+
+        #sessions button:hover {
+            background-color: #e1e1e1; /* Light gray background on hover */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Slight shadow on hover */
+        }
+
+        #chat-box {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background-color: #ffffff; /* White background for the chat area */
+            padding: 20px;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle inner shadow */
+            word-wrap: break-word;
+        }
+
+        #chats {
+            flex: 1;
+            overflow-y: auto;
+            margin-bottom: 20px;
+        }
+
+        #chats p {
+            background-color: #f1f1f1; /* Light gray background for messages */
+            border-radius: 10px;
+            padding: 10px;
+            margin: 5px 0;
+            max-width: 75%;
+            align-self: flex-start; /* Align messages to the left */
+        }
+
+        #send-box {
+            display: flex;
+            align-items: center;
+        }
+
+        #msg {
+            flex: 1;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            margin-right: 10px;
+        }
+
+        #send {
+            padding: 10px 20px;
+            border-radius: 5px;
+            border: none;
+            background-color: #0095f6; /* Instagram-like blue color */
+            color: #ffffff; /* White text */
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        #send:hover {
+            background-color: #007bb5; /* Slightly darker blue on hover */
+        }
+
+        .highlighted{
+            background-color: #007bb5 !important; /* Light gray background on hover */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1) !important; /* Slight shadow on hover */
+        }
+
+
+    </style>
+    
+
+
+
+
+
+        <div id="sessions">
+        </div>
+        <div id="chat-box">
+            <div id="chats">
+                <!-- <div id="inidividual-chat">
+                </div> -->
+            </div>
+            <div id="send-box">
+                <input type="text" name="text" id="msg">
+                <button id="send">SEND</button>
+            </div>
+        </div>
+
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+
+        const email = urlParams.get('email');
+        const pass = urlParams.get('pass');
+        
+
+        let session = null
+        let recipient_name = null
+        let source = null
+        let last_msg_date = null
+
+        var params = `email=${email}&pass=${pass}`
+
+
+        function addMessageToDom(msg, sender) {
+            var p = document.createElement('p')
+            p.textContent = `${sender}: ${msg}`
+            document.getElementById('chats').appendChild(p)
+        }
+
+        function getChatHistory(session, chatID) {
+            const xhr5 = new XMLHttpRequest();
+            let params1 = `session=${session}&chat_id=${chatID}`
+            xhr5.open('POST', 'backend/get_chatHistory.php', true)
+            xhr5.setRequestHeader('Content-type', 'application/x-www-form-urlencoded')
+            xhr5.onload = function(){
+                var data = JSON.parse(xhr5.responseText)
+                console.log(data);
+                
+                for (const chat of data){
+                    addMessageToDom(chat['message'], chat['source_id']  == 'You' ? 'You' : recipient_name)
+                };
+            }
+            xhr5.send(params1)
+            
+        }
+
+
+        //Set User ID in sessions
+        const xhr4 = new XMLHttpRequest();
+        xhr4.open('POST', 'backend/set_userID.php', true)
+        xhr4.setRequestHeader('Content-type', 'application/x-www-form-urlencoded')
+        xhr4.send(params)
+
+        let conn = new WebSocket(`ws://localhost:8080/?email=${email}&pass=${pass}`)
+
+
+        //Set source ID
+        const xhr3 = new XMLHttpRequest();
+        xhr3.open('POST', 'backend/get_source.php', true)
+        xhr3.setRequestHeader('Content-type', 'application/x-www-form-urlencoded')
+        xhr3.onload = function(){source = JSON.parse(xhr3.responseText)['conn_id']}
+        xhr3.send()
+
+
+        // Call sessions to get the sessions
+
+        const xhr1 = new XMLHttpRequest()
+        xhr1.open('POST', 'backend/get_sessions.php', true)
+        xhr1.setRequestHeader('Content-type', 'application/x-www-form-urlencoded')
+        xhr1.onload = function(){
+            //Get sessions in to data array
+            var data = JSON.parse(xhr1.responseText);
+            //Loop through sessions to add to DOM
+            data.forEach(i => {
+                var btn = document.createElement('button')
+                btn.value = i.sessionID
+                btn.classList.add('btn');
+                (function(i) {
+                    btn.onclick = function() {
+                        session = i.sessionID;
+                        recipient_name = i.recipient
+
+                        //Clearing Chats of previous session
+                        document.getElementById('chats').innerHTML = ''
+
+                        //Load previous chat history
+                        
+                        chatID = null
+                        getChatHistory(session, chatID)
+                        
+                        
+
+                        //Highligthing Button
+                        var buttons = btn.parentNode.getElementsByClassName('btn');
+                        for (var j = 0; j < buttons.length; j++) {
+                            buttons[j].classList.remove('highlighted');
+                        }
+                        btn.classList.add('highlighted');
+
+                        //Development Info
+                        console.log('Session ID set to: ' + session);
+                    };
+                })(i);
+                btn.innerText = i.recipient;
+                document.getElementById('sessions').appendChild(btn);
+            })  
+        }
+        xhr1.send()
+
+        conn.onmessage = (e)=>{
+            data = JSON.parse(e.data)
+            if(data.type == 'msg'){
+
+                if(session == data.session){
+                    addMessageToDom(data['msg'], recipient_name)
+                    console.log(data);
+                    
+                }   
+            }
+        }
+
+        
+        document.getElementById('send').onclick = (ev) => {
+            var msg = document.getElementById('msg').value
+            document.getElementById('msg').value = ''
+
+
+            addMessageToDom(msg, 'You')
+            const data = JSON.stringify({
+                type: 'msg',
+                user: [email, pass],
+                session: session,
+                msg_time: '',
+                msg: msg
+            })
+
+            conn.send(data)
+        }
+            
+            
+        //Add more users and sessions
+        //Display the message instead of console login and also clear chats when pickimg new session
+        //Disable or handle send button when no session selected       
+        //Create the chats database
+        //Implement data base retirveal and storage of chats
+
+
+        //Make it so that when addind sessions the u add the onClick fucntion to some function and the given w=varible is the session id
+        //Pull chat functions
+        //send XHML request with email and pass and get user id then pull chats where this user id and tutor id exists
+
+        //Send button when pressed get the message value then send messgae with tutor id and student id message and yada yada
+    </script>
+
+
+</body>
+</html>

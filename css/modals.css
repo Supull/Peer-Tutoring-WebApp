@@ -1,0 +1,14 @@
+.modal {
+    position: fixed;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid black;
+    z-index: 10;
+}
+
+.close-modal{
+    background-color: transparent;
+    border: none;
+    font-size: 2rem;
+    font-weight: bold;
+}

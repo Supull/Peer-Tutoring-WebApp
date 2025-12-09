@@ -1,0 +1,14 @@
+1. Get sending and receving data figured
+2. Develop unicasting instead of broadcasting
+3. Store messages in database
+4. Load messages from database
+4. Login page that updates in the database the connection ID
+5. Ability to send specific users messages by name
+6. Chatrooms which uses db info to assing student and tutor Chatrooms
+7. Clean code and security measures
+8. Implement to main site
+
+
+1. Clicks on sessions
+2. Webscoket opens
+3. 

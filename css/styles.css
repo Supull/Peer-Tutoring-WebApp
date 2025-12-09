@@ -1,0 +1,156 @@
+:root {
+    --margin: 10px;
+
+
+    --color1: #212121;
+    --color2: #D3D3D3;;
+    --color3: #5A65CA;
+
+}
+
+body {
+    margin: 0px;
+    color: var(--color1);
+}
+
+#blur {
+    width: 100vw; height: 100vh;
+    background-color: #000000;
+    z-index: 1;
+
+    pointer-events: none;
+    background-color: transparent;
+    position: absolute;
+}
+
+.app {
+    background-color: var(--color1);
+    display: flex;
+    flex-direction: row;
+    padding: var(--margin);
+}
+
+/* Navigation Bar Styles */
+
+.navigation-bar {
+    width: 70px;
+    height: calc(100vh - 2*var(--margin));
+    display: flex;
+    flex-direction: column;
+    border-radius: 0px 30px 30px 0px;
+    margin-right: var(--margin);
+    align-items: center;
+}
+
+.navigation-bar button{
+    background-color: #EE4E4E;
+    z-index: 1;
+    width: 40px;
+    height: 40px;
+    margin: 10px;
+    border: none;
+    border-radius: 10px;
+
+}
+
+
+/* Profile Area Styles */
+
+.profile {
+    background-color: var(--color2);
+    width: 300px;
+    color: var(--color2);
+    height: calc(100vh - 2*var(--margin));
+    display: inline-block;
+    border-radius: 30px;
+    margin-right: var(--margin);
+    z-index: 0;
+
+}
+
+/* Tutor Area Styles */
+
+.tutors {
+    display: flex;
+    flex-grow: 1;  
+    flex-direction: row;
+    border-radius: 30px;
+    
+}
+
+.tutors .sub {
+    height: calc(100vh - calc(2*var(--margin)));
+    width: 350px;
+    border-radius: inherit;
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+
+
+.tutors .sub .info p {
+    margin: 20px;
+}
+
+.tutors .main .individual-tutor {
+    background-color: white;
+    backdrop-filter: blur(100px);
+    color: black;
+    margin: 0px 0px 20px 0px;
+    display: flex;
+    flex-direction: row;
+    padding: 10px 10px;
+    align-items: center;
+    border-radius: 30px;
+}
+
+.tutors .main .individual-tutor .name {
+    display: flex;
+    flex-direction: row;
+    width: 70%;
+    font-size: 1.2rem;
+    margin: 0px 0px 0px 20px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.tutors .main .individual-tutor button {
+    margin: 0px 0px 0px auto;
+    font-weight: bold;
+    font-family: monospace;
+    padding: 5px;
+    background-color: black;
+    border: none;
+    color: white;
+    border-radius: 10px;
+}
+
+.tutors .sub .chats .individual-tutor {
+    background-color: white;
+    margin: 2px 4px;
+    display: flex;
+    flex-direction: row;
+    padding: 10px 10px;
+    align-items: center;
+    border-radius: 30px;
+}
+
+.tutors .sub .chats .individual-tutor .name {
+    display: flex;
+    flex-direction: row;
+    width: 70%;
+    font-size: 1.2rem;
+    margin: 0px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.tutors .sub .chats .individual-tutor button {
+    margin: 0px 0px 0px auto;
+    font-weight: bold;
+    font-family: monospace;
+    padding: 5px;
+    background-color:white;
+    color: black;
+    border-radius: 10px;
+}

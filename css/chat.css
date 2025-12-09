@@ -1,0 +1,63 @@
+#modalChat {
+    border-radius: 30px;
+    background-color: white;
+    width: 600px; height: 500px;
+    max-width: 80%;
+    display: none;
+    flex-direction: column;
+    box-shadow: 0px 0px 40px black;
+}
+
+#chatHeader {
+    padding: 10px 15px;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+}
+
+#modalChat p {
+    margin: 10px;
+}
+
+#chatContent{
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+#chatContent #chats {
+    flex-grow: 1;
+    overflow-y: scroll;
+}
+
+#chatContent p {
+    font-size: 1.5rem;
+}
+
+
+#chatContent #send-box{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 10px;
+    height: 40px;
+}
+
+#chatContent #send{
+    margin: 0px;
+    border: none;
+    border-radius: 0px 20px 20px 0px;
+    margin-left: 3px;
+    height: 100%;
+    background-color: gray;
+    color: white;
+}
+
+#chatContent input{
+    width: 400px;
+    border: 2px solid grey;
+    border-radius: 20px 0px 0px 20px;
+    padding: 0px 30px;
+    
+}
+
